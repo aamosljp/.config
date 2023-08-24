@@ -3,6 +3,7 @@ general {
     interval = 5
 }
 
+order += "volume master"
 order += "memory"
 order += "disk /"
 order += "load"
@@ -22,4 +23,12 @@ disk "/" {
 
 memory {
     format = "%used / %total"
+}
+
+volume master {
+    format = "%volume"
+    format_muted = "muted"
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
 }
