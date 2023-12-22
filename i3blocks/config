@@ -1,0 +1,23 @@
+[music]
+command=mpc | awk '/ - / { printf $0 } /(playing|paused)/ { print " " $1 " " $3; if ($1 == "[playing]") print "\n#00FF00"; else print "\n#FFFF00" }';
+interval=1
+
+[volume]
+command=/home/aamos/scripts/volume.sh
+interval=1
+
+[memory]
+command=free -h | awk '/Mem/ { print $3 " / " $2 }'
+interval=5
+
+[disk]
+command=df -h --total | awk '/total/ { print $4 }'
+interval=60
+
+[load]
+command=cat /proc/loadavg | awk '{ print $1 }'
+interval=5
+
+[time]
+command=date +"%x %X"
+interval=5

@@ -37,16 +37,18 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
+set $refresh_i3status killall -SIGUSR1 i3blocks
 bindsym $mod+F12 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 bindsym $mod+F11 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym $mod+F10 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+
+bindsym $mod+F1 exec --no-startup-id mpc toggle
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec kitty tmux
 
 # open browser
 bindsym $mod+b exec chromium
@@ -178,7 +180,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
+# Start i3bar to display a workspace bar (plus the system information i3blocks
 # finds out, if available)
 bar {
         colors {
@@ -192,7 +194,7 @@ bar {
                 urgent_workspace   #2f343a #900000 #ffffff
                 binding_mode       #2f343a #900000 #ffffff
         }
-        status_command i3status
+        status_command i3blocks
         tray_output primary
 }
 
