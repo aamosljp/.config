@@ -1,10 +1,18 @@
-[music]
-full_text=Play/Pause
-command=dbus-sened --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-color=#1db954
+[battery]
+command=echo "upower -d | awk '/percentage/ { ORS=\" \"; print \$2; }' | awk '{ print \$1 }'\nupower -d | awk '/state/ { ORS=\" \"; print \$2 }' | awk '{ print \$1 }'" | bash | awk '{ ORS=" "; print }'
+interval=5
+
+#[music]
+#full_text=Play/Pause
+#command=dbus-sened --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+#color=#1db954
 
 [volume]
 command=/home/aamos/scripts/volume.sh
+interval=1
+
+[mic]
+command=/home/aamos/scripts/mic.sh
 interval=1
 
 [memory]
@@ -22,3 +30,4 @@ interval=5
 [time]
 command=date +%s | awk '{ system("date \"+%x %X\" --date=@" int($1/5)*5) }'
 interval=5
+
